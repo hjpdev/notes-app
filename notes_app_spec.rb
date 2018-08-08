@@ -10,8 +10,7 @@ describe Notebook do
   it { is_expected.to respond_to(:add_note).with(2).arguments }
 
   it 'Adds a note to titles when #add_note is called' do
-    allow(subject).to receive(:add_note).and_return('A', 'abc')
-    expect(subject.titles['A'] == 'abc').to eq true
+    expect(subject.add_note('A', 'abc')).to eq [{'A' => 'abc'}]
   end
 
   it 'Returns all titles when #titles is called ' do
