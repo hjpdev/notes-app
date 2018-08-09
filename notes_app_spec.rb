@@ -67,11 +67,7 @@ end
 describe Note do
   note = Note.new('A', 'abc')
 
-  it 'Responds to #title' do
-    expect(note.title).to eq 'A'
-  end
-
-  it 'Responds to #body' do
-    expect(note.body).to eq 'abc'
+  it 'Returns the length of the note' do
+    expect(note.note_length).to eq 3
   end
 end
