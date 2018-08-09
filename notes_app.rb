@@ -19,6 +19,11 @@ class Notebook
     @titles.each_key { |k| all_titles << k }
     all_titles
   end
+
+  def delete_title(title)
+    return 'Not in titles.' if @titles[title].nil?
+    @titles.delete(title)
+  end
 end
 
 

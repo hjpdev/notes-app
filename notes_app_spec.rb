@@ -13,6 +13,8 @@ describe Notebook do
 
   it { is_expected.to respond_to(:all_titles) }
 
+  it { is_expected.to respond_to(:delete_title) }
+
   it 'Adds a note to titles when #add_note is called' do
     subject.add_note('A', 'abc')
     expect(subject.titles).to eq('A' => 'abc')
@@ -42,5 +44,20 @@ describe Notebook do
     subject.add_note('B', 'def')
     subject.add_note('C', 'ghi')
     expect(subject.all_titles).to eq(%w[A B C])
+  end
+
+  it 'Deletes a title & it\'s associated text when #delete_title is called' do
+    subject.add_note('A', 'abc')
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    subject.delete_title('B')
+    expect(subject.titles).to eq('A' => 'abc', 'C' => 'ghi')
+  end
+
+  it 'Returns \'Not in titles.\' when trying to delete invalid title' do
+    subject.add_note('A', 'abc')
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    expect(subject.delete_title('D')).to eq('Not in titles.')
   end
 end
