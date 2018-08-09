@@ -15,6 +15,8 @@ describe Notebook do
 
   it { is_expected.to respond_to(:delete_title) }
 
+  it { is_expected.to respond_to(:no_of_titles) }
+
   it 'Adds a note to titles when #add_note is called' do
     subject.add_note('A', 'abc')
     expect(subject.titles).to eq('A' => 'abc')
@@ -59,5 +61,12 @@ describe Notebook do
     subject.add_note('B', 'def')
     subject.add_note('C', 'ghi')
     expect(subject.delete_title('D')).to eq('Not in titles.')
+  end
+
+  it 'Returns the number of titles when #no_of_titles is called' do
+    subject.add_note('A', 'abc')
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    expect(subject.no_of_titles).to eq 3
   end
 end

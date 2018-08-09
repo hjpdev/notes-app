@@ -24,6 +24,10 @@ class Notebook
     return 'Not in titles.' if @titles[title].nil?
     @titles.delete(title)
   end
+
+  def no_of_titles
+    @titles.keys.count
+  end
 end
 
 
