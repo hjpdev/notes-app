@@ -6,12 +6,12 @@ class Notebook
   end
 
   def add_note(new_note)
-    return 'Title already exists.' unless @titles[new_note.title].nil?
+    raise('Title already exists.') unless @titles[new_note.title].nil?
     @titles[new_note.title] = new_note.body
   end
 
   def search(title)
-    return 'Not in titles.' if @titles[title].nil?
+    raise 'Not in titles.' if @titles[title].nil?
     @titles.select { |k, v| k == title }
   end
 
@@ -22,7 +22,7 @@ class Notebook
   end
 
   def delete_title(title)
-    return 'Not in titles.' if @titles[title].nil?
+    raise('Not in titles.') if @titles[title].nil?
     @titles.delete(title)
   end
 
@@ -43,7 +43,3 @@ class Note
     @body.chars.count
   end
 end
-
-
-
-
