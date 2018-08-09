@@ -10,15 +10,16 @@ class Notebook
   end
 
   def search(title)
-    return 'Not in titles.' if @titles[title] == nil
-    output = @titles.select { |k, v| k == title }
+    return 'Not in titles.' if @titles[title].nil?
+    @titles.select { |k, v| k == title }
+  end
+
+  def all_titles
+    all_titles = []
+    @titles.each_key { |k| all_titles << k }
+    all_titles
   end
 end
 
-nb = Notebook.new
-nb.add_note('A', 'abc')
-nb.add_note('B', 'abc')
-nb.add_note('C', 'abc')
-p nb.search('B')
-p nb.search('d')
+
 

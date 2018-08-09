@@ -11,6 +11,8 @@ describe Notebook do
 
   it { is_expected.to respond_to(:search).with(1).argument }
 
+  it { is_expected.to respond_to(:all_titles) }
+
   it 'Adds a note to titles when #add_note is called' do
     subject.add_note('A', 'abc')
     expect(subject.titles).to eq('A' => 'abc')
@@ -33,5 +35,12 @@ describe Notebook do
     subject.add_note('B', 'def')
     subject.add_note('C', 'ghi')
     expect(subject.search('D')).to eq('Not in titles.')
+  end
+
+  it 'Returns an array of all titles when #all_titles is called' do
+    subject.add_note('A', 'abc')
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    expect(subject.all_titles).to eq(%w[A B C])
   end
 end
