@@ -1,12 +1,13 @@
 class Notebook
-  attr_reader :title, :body, :titles
+  attr_reader :titles
 
   def initialize
     @titles = {}
   end
 
-  def add_note(title, body)
-    @titles[title] = body
+  def add_note(new_note)
+    return 'Title already exists.' unless @titles[new_note.title].nil?
+    @titles[new_note.title] = new_note.body
   end
 
   def search(title)
@@ -29,6 +30,16 @@ class Notebook
     @titles.keys.count
   end
 end
+
+class Note
+  attr_reader :title, :body
+
+  def initialize(title, body)
+    @title = title
+    @body = body
+  end
+end
+
 
 
 
