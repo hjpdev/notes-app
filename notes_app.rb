@@ -16,7 +16,4 @@ class Notebook
   end
 end
 
-nb = Notebook.new
-nb.add_note('A', 'abc')
-p nb.search('A')  
 
