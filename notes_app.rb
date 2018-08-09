@@ -2,18 +2,23 @@ class Notebook
   attr_reader :title, :body, :titles
 
   def initialize
-    @titles = []
+    @titles = {}
   end
 
   def add_note(title, body)
-    note = {}
-    note[title] = body
-    @titles << note
+    @titles[title] = body
   end
 
   def search(title)
-    @titles.each { |k, v| k == title ? @titles[k, v] : nil }
+    return 'Not in titles.' if @titles[title] == nil
+    output = @titles.select { |k, v| k == title }
   end
 end
 
+nb = Notebook.new
+nb.add_note('A', 'abc')
+nb.add_note('B', 'abc')
+nb.add_note('C', 'abc')
+p nb.search('B')
+p nb.search('d')
 

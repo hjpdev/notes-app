@@ -12,7 +12,8 @@ describe Notebook do
   it { is_expected.to respond_to(:search).with(1).argument }
 
   it 'Adds a note to titles when #add_note is called' do
-    expect(subject.add_note('A', 'abc')).to eq [{'A' => 'abc'}]
+    subject.add_note('A', 'abc')
+    expect(subject.titles).to eq('A' => 'abc')
   end
 
   it 'Returns all titles when #titles is called ' do
@@ -22,6 +23,15 @@ describe Notebook do
 
   it 'Returns a note when #search is called' do
     subject.add_note('A', 'abc')
-    expect(subject.search('A') == [{'A' => 'abc'}]).to eq true
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    expect(subject.search('B') == {'B' => 'def'}).to eq true
+  end
+
+  it 'Returns \'Not in titles.\' if an invalid title is searched for' do
+    subject.add_note('A', 'abc')
+    subject.add_note('B', 'def')
+    subject.add_note('C', 'ghi')
+    expect(subject.search('D')).to eq('Not in titles.')
   end
 end
