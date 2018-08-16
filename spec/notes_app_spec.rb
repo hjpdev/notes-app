@@ -1,4 +1,4 @@
-require './notes_app.rb'
+require 'notes_app'
 
 describe Notebook do
   let(:note1) { double :note, title: 'A', body: 'abc' }

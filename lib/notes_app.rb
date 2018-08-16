@@ -1,3 +1,5 @@
+require_relative 'note'
+
 class Notebook
   attr_reader :titles
 
@@ -28,18 +30,5 @@ class Notebook
 
   def no_of_titles
     @titles.keys.count
-  end
-end
-
-class Note
-  attr_reader :title, :body
-
-  def initialize(title, body)
-    @title = title
-    @body = body
-  end
-
-  def note_length
-    @body.chars.count
   end
 end
